@@ -1,0 +1,60 @@
+# dependencies
+node_modules/
+client/node_modules/
+
+# build outputs
+build/
+dist/
+client/dist/
+client/build/
+
+# environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# testing
+coverage/
+.nyc_output/
+
+# TypeScript
+*.tsbuildinfo
+
+# IDE and editors
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# cache
+.npm/
+.eslintcache
+.cache/
+*.cache
+
+# misc
+.DS_Store
+Thumbs.db
+.tmp/
+temp/
+
+# docker
+.docker/
+*.dockerfile
+!Dockerfile
+!docker-compose.yml
+
+# production
+client/.vite/

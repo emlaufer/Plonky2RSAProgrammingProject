@@ -1,0 +1,2 @@
+1. To have a portable binary to call from cgi-bin and use on cardinal, you 
+need to compile to musl
