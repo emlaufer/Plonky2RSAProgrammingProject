@@ -56,6 +56,9 @@ fn pow_65537(
     value: &BigUintTarget,
     modulus: &BigUintTarget,
 ) -> BigUintTarget {
+    // BEGIN SOLUTION
+    // TODO: Implement the circuit to raise value to the power 65537 mod modulus
+    // HINT: 65537 = 2^16 + 1. Can you use this to exponentiate efficiently?
     let mut v = value.clone();
     for _ in 0..16 {
         let tmp = builder.mul_biguint(&v, &v);
@@ -63,6 +66,7 @@ fn pow_65537(
     }
     let tmp = builder.mul_biguint(value, &v);
     builder.rem_biguint(&tmp, modulus)
+    // END SOLUTION
 }
 
 /// Circuit which computes a hash target from a message
