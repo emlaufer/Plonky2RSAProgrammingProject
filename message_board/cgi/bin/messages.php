@@ -30,9 +30,9 @@ function verifyProof($proof, $verifierData, $common, $message, $publicKeys) {
     $output = shell_exec("$binaryPath $circuitFile $proofFile $publicInputFile 2>&1");
 
     // Delete temporary files
-    unlink($circuitFile);
-    unlink($proofFile);
-    unlink($publicInputFile);
+    //unlink($circuitFile);
+    //unlink($proofFile);
+    //unlink($publicInputFile);
 
     // Check if the verification was successful
     if ($output === "success\n") {

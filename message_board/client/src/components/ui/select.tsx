@@ -79,6 +79,18 @@ const SelectContent = React.forwardRef<
     ref,
   ) => {
     const [searchQuery, setSearchQuery] = React.useState('');
+    const searchInputRef = React.useRef<HTMLInputElement>(null);
+
+    // When filtered results change, maintain focus on the search input
+    React.useEffect(() => {
+      if (
+        searchable &&
+        searchInputRef.current &&
+        document.activeElement !== searchInputRef.current
+      ) {
+        searchInputRef.current.focus();
+      }
+    }, [searchQuery, searchable]);
 
     // Filter children based on the search query
     // Default filter implementation
@@ -139,10 +151,14 @@ const SelectContent = React.forwardRef<
           {searchable && (
             <div className="sticky top-0 bg-popover border-b border-border p-2">
               <input
+                ref={searchInputRef}
                 type="text"
                 placeholder={searchPlaceholder}
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e) => {
+                  e.stopPropagation();
+                  setSearchQuery(e.target.value);
+                }}
                 className="w-full p-2 border border-input rounded-md bg-input text-foreground"
                 onKeyDown={(e) => e.stopPropagation()} // Prevent key events from propagating to the Select
               />

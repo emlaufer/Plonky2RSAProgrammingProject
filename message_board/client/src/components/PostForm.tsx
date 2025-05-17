@@ -35,6 +35,8 @@ const PostForm = ({ users, circuits, onAddPost }: PostFormProps) => {
 
   const selectedUsers = users.filter((user) => selectedUserIds.includes(user._id));
 
+  console.log('Proof is: ', proof);
+
   // NOTE: We used to support client size verification...however this means we need to give circuits to the client
   // To prevent issues where students see other peoples circuits, we will only do it on the server side for now...
   // This will at least check that the public inputs are what we expect
@@ -233,11 +235,31 @@ const PostForm = ({ users, circuits, onAddPost }: PostFormProps) => {
                 searchPlaceholder="Search users..."
                 onSearch={(query: string, items: any[]) => {
                   if (!query.trim()) return items;
+                  console.log('items: ', items);
+                  console.log('query: ', query);
+                  console.log('users: ', users);
+                  console.log(
+                    'users: ',
+                    items.map((item: any) => {
+                      const userName =
+                        users.find((user) => String(user._id) === item.props.value)?.name || '';
+                      return userName;
+                    }),
+                  );
+                  console.log(
+                    'filtered items: ',
+                    items.filter((item: any) => {
+                      // Extract the user name from the item component
+                      const userName =
+                        users.find((user) => String(user._id) === item.props.value)?.name || '';
+                      return userName.toLowerCase().includes(query.toLowerCase());
+                    }),
+                  );
 
                   return items.filter((item: any) => {
                     // Extract the user name from the item component
                     const userName =
-                      users.find((user) => user._id === item.props.value)?.name || '';
+                      users.find((user) => String(user._id) === item.props.value)?.name || '';
                     return userName.toLowerCase().includes(query.toLowerCase());
                   });
                 }}
@@ -310,7 +332,8 @@ const PostForm = ({ users, circuits, onAddPost }: PostFormProps) => {
 
                   return items.filter((item: any) => {
                     const circuitName =
-                      circuits.find((circuit) => circuit._id === item.props.value)?.name || '';
+                      circuits.find((circuit) => String(circuit._id) === item.props.value)?.name ||
+                      '';
                     return circuitName.toLowerCase().includes(query.toLowerCase());
                   });
                 }}

@@ -18,12 +18,12 @@ CGI_BIN_LOCAL_DIR="cgi/bin"
 echo "Deploying client files to the server..."
 scp -r $CLIENT_LOCAL_DIR/dist/* $SERVER:$WWW_DIR || { echo "Failed to copy client files!"; exit 1; }
 
-# Step 2: Deploy CGI scripts to the server
-echo "Deploying CGI scripts to the server..."
-scp -r $CGI_BIN_LOCAL_DIR/* $SERVER:$CGI_BIN_DIR || { echo "Failed to copy CGI scripts!"; exit 1; }
-
-# Step 4: Set executable permissions for CGI scripts
-echo "Setting executable permissions for CGI scripts..."
-ssh $SERVER "chmod +x $CGI_BIN_DIR/*" || { echo "Failed to set permissions on CGI scripts!"; exit 1; }
-
-echo "Deployment completed successfully!"
+## Step 2: Deploy CGI scripts to the server
+#echo "Deploying CGI scripts to the server..."
+#scp -r $CGI_BIN_LOCAL_DIR/* $SERVER:$CGI_BIN_DIR || { echo "Failed to copy CGI scripts!"; exit 1; }
+#
+## Step 4: Set executable permissions for CGI scripts
+#echo "Setting executable permissions for CGI scripts..."
+#ssh $SERVER "chmod +x $CGI_BIN_DIR/*" || { echo "Failed to set permissions on CGI scripts!"; exit 1; }
+#
+#echo "Deployment completed successfully!"
